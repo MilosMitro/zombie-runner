@@ -17,26 +17,18 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: |
-          pip install pygame pyinstaller
+        run: pip install pygame pyinstaller
 
       - name: Build EXE
         run: |
           if (Test-Path "menu_music.mp3") {
-            pyinstaller --onefile --windowed --name "Zombie Runner" --add-data "menu_music.mp3;." zombie_runner.py
+            pyinstaller --onefile --windowed --name "ZombieRunner" --add-data "menu_music.mp3;." zombie_runner.py
           } else {
-            pyinstaller --onefile --windowed --name "Zombie Runner" zombie_runner.py
+            pyinstaller --onefile --windowed --name "ZombieRunner" zombie_runner.py
           }
 
-      - name: Upload EXE artifact
+      - name: Upload EXE
         uses: actions/upload-artifact@v4
         with:
-          name: Zombie-Runner-Windows
-          path: dist/Zombie Runner.exe
-```
-
----
-
-Now when you're on GitHub creating the new file, name it exactly:
-```
-.github/workflows/build.yml
+          name: ZombieRunner-Windows
+          path: dist/ZombieRunner.exe
